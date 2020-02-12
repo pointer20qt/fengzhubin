@@ -4,26 +4,26 @@ using namespace std;
 
 class skull2{
 public:
-	void pulsa(I a, I b)
+	skull2(const skull2& ptr) :m_ptr(new int(*ptr.m_ptr))
 	{
-		int c = 0;
-		c = a + b;
-		cout << c << endl;
+		cout << "深拷贝" << endl;
 	}
-};
-
-
-
-class skull{
+	skull2(skull2 &&ptr) :m_ptr(ptr.m_ptr)
+	{
+		ptr.m_ptr = nullptr;
+		cout << "移动构造" << endl;
+	}
 private:
-	friend void skull2::pulsa(I a, I b);
+	int* m_ptr;
 };
+
+
+
 
 
 int main()
 {
-	skull2 ptr;
-	ptr.pulsa(1,2);
+	
 	
 	
 
